@@ -4,14 +4,17 @@ use std::{
 };
 
 fn main() {
-    let file = File::open("./src/input.txt").unwrap();
+    let file = File::open("src/input.txt").unwrap();
     let reader = BufReader::new(file);
+    let mut lines: Vec<String> = Vec::new();
+    for line in reader.lines() {
+        lines.push(line.unwrap());
+    }
 
     // Part 1
     let mut totals: Vec<u32> = Vec::new();
     let mut current_total: u32 = 0;
-    for line in reader.lines() {
-        let line = line.unwrap();
+    for line in lines.iter() {
         if line.is_empty() {
             totals.push(current_total);
             current_total = 0;
@@ -28,7 +31,7 @@ fn main() {
         }
     }
 
-    println!("Largest: {largest}");
+    println!("Part 1: {largest}");
 
     // Part 2
     let mut largest_3: Vec<u32> = Vec::new();
@@ -56,5 +59,5 @@ fn main() {
         largest_3_total = largest_3_total + number;
     }
 
-    println!("Largest 3: {largest_3_total}");
+    println!("Part 2: {largest_3_total}");
 }

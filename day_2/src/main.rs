@@ -4,13 +4,16 @@ use std::{
 };
 
 fn main() {
-    // Part 1
     let file = File::open("src/input.txt").unwrap();
     let reader = BufReader::new(file);
-    let mut total_score = 0;
+    let mut lines: Vec<String> = Vec::new();
+    for line in reader.lines() {
+        lines.push(line.unwrap());
+    }
 
-    for line in reader.lines().into_iter() {
-        let line = line.unwrap();
+    // Part 1
+    let mut total_score = 0;
+    for line in lines.iter() {
         let game = line.split_once(" ").unwrap();
 
         let score = match game {
@@ -32,12 +35,8 @@ fn main() {
     println!("Part 1: {total_score}");
 
     // Part 2
-    let file = File::open("src/input.txt").unwrap();
-    let reader = BufReader::new(file);
     let mut total_score = 0;
-
-    for line in reader.lines().into_iter() {
-        let line = line.unwrap();
+    for line in lines.iter() {
         let game = line.split_once(" ").unwrap();
 
         let score = match game {
